@@ -1,0 +1,392 @@
+KIRO, update the byDebut hackathon MVP frontend and onboarding UX so the platform can place each user into the most appropriate creative role instead of only asking them to manually choose one. The frontend must feel like an intelligent role-discovery and collaboration interface, not just a simple form app.
+
+The frontend must be redesigned around a guided onboarding flow with role recommendation, role confirmation, and role-specific workspace views.
+
+Use:
+- HTML
+- Vanilla JavaScript
+- CSS
+- no frontend framework unless absolutely necessary
+
+The frontend must include the following screens and behaviors:
+
+1. Landing Page
+Create a polished landing page for byDebut with:
+- product name
+- one-sentence value proposition
+- short explanation that byDebut connects writers, actors, reviewers, and AI to build YouTube-ready creative projects
+- a primary CTA button: "Start Your Creative Role Discovery"
+- a secondary CTA button: "View Demo Flow"
+- a visual section that explains the 6 engines:
+  Identity Engine
+  Matching Engine
+  Project Assembly Engine
+  Creative Production Engine
+  Review and Quality Engine
+  Distribution and Growth Engine
+
+2. Role Discovery Screen
+Instead of immediately asking users to select a role, first present a guided discovery questionnaire.
+
+This screen must ask:
+- What do you most want to contribute?
+  options:
+  writing ideas
+  performing characters
+  evaluating and improving stories
+  validating specialized knowledge
+- What excites you most?
+  options:
+  creating narratives
+  embodying emotions
+  analyzing quality
+  checking technical accuracy
+- What kind of output do you want to influence?
+  options:
+  script
+  performance
+  quality
+  expertise
+- How do you prefer to help a project succeed?
+  options:
+  invent the story
+  represent the character
+  improve the narrative
+  validate correctness
+- Which description fits you best?
+  options:
+  I express ideas through writing
+  I want to perform and be seen in stories
+  I like reviewing and giving feedback
+  I contribute specialized professional insight
+
+After answering, calculate a frontend role recommendation score for:
+- writer
+- actor
+- reviewer
+- specialist
+
+Use a simple scoring model in the frontend and send the answers to the backend as well.
+
+Display a result screen:
+- "Recommended Role: Writer / Actor / Reviewer / Specialist"
+- show confidence score
+- show 2-3 bullets explaining why this role fits
+- provide a button:
+  "Continue with this role"
+- also provide:
+  "Choose a different role manually"
+
+For the hackathon MVP, if specialist is recommended, allow the user to continue as reviewer-specialist or reviewer with specialization so the system remains within the MVP scope.
+
+3. Role Confirmation Screen
+After role recommendation, show a role confirmation step.
+
+This screen must:
+- summarize the recommended role
+- explain what this role does inside byDebut
+- show what the user will be able to do next
+- allow user to confirm or switch role
+
+Role descriptions:
+
+Writer:
+creates ideas, scripts, fragments, scenes, essays, and narrative concepts
+
+Actor:
+represents characters, emotional tone, performance style, and audience-facing interpretation
+
+Reviewer:
+evaluates narrative clarity, emotional impact, coherence, and audience engagement
+
+Specialist:
+validates content from a professional or technical perspective; for MVP, map this into reviewer with specialization
+
+4. Role-Specific Onboarding Forms
+Once the role is confirmed, present a role-specific onboarding form.
+
+Writer form fields:
+- project or idea title
+- paste story, fragment, scene, concept, or essay
+- themes
+- tone
+- genre
+- creative goal
+- intended audience
+- what emotion should the audience feel?
+- what kind of YouTube video do you imagine?
+- optional: inspiration references
+
+Actor form fields:
+- artistic style
+- emotional range
+- preferred genres
+- desired character archetypes
+- performance format
+- target audience
+- what kinds of roles do you want to develop?
+- what emotional tones fit you best?
+- what type of YouTube presence do you want to build?
+- optional: performance inspirations
+
+Reviewer form fields:
+- evaluation focus
+- specialization area
+- review style
+- quality standards
+- what do you detect better than most people?
+- what kind of stories do you review best?
+- what matters most to you when evaluating content?
+- optional: domain experience
+
+Specialist form fields:
+- professional field
+- years of experience
+- validation strengths
+- what types of content need your expertise?
+- how do you improve project credibility?
+- map these values into the reviewer-specialized backend profile
+
+Each role-specific form must be visually distinct with:
+- different header color/accent
+- role badge
+- role summary card
+
+5. Identity Profile Results Screen
+After form submission, call POST /profile and show the generated structured role profile in a user-friendly way.
+
+Do not show raw JSON only.
+Also render:
+- profile summary card
+- key strengths
+- AI-interpreted contribution type
+- best-fit project role
+- recommended collaboration value
+
+For writers:
+show themes, tone, genre, creative goal, audience fit
+
+For actors:
+show artistic identity, emotional range, archetype fit, format fit
+
+For reviewers:
+show review focus, standards, specialization, evaluation lens
+
+Also include a collapsible raw JSON panel for demo credibility.
+
+6. Writer Workspace
+The writer path is the core MVP path and must be the most complete.
+
+Writer workspace sections:
+- submitted text card
+- AI-generated Writer Profile card
+- recommended actor matches
+- recommended reviewer matches
+- score breakdown panel
+- match explanation cards
+- collaborator selection area
+- button: "Assemble Creative Project"
+
+Actor match cards must display:
+- actor name
+- artistic style
+- emotional range
+- preferred genres
+- character archetypes
+- performance format
+- alignment score
+- why this actor fits
+
+Reviewer match cards must display:
+- reviewer name
+- evaluation focus
+- specialization area
+- review style
+- alignment score
+- why this reviewer fits
+
+Allow selecting:
+- one actor
+- one reviewer
+
+7. Project Assembly Screen
+After collaborator selection, call POST /assembleProject.
+
+Display:
+- project title
+- narrative summary
+- why this actor was selected
+- why this reviewer was selected
+- recommended audience
+- recommended video format
+- creative direction
+
+Render this as a polished “Creative Project Brief” page with sections and summary cards.
+
+Include a call-to-action button:
+- "Generate Production Package"
+
+8. Production Package Screen
+After calling POST /generateProductionPackage, render a full output experience.
+
+Must include:
+- YouTube title
+- thumbnail concept
+- opening hook
+- audience positioning
+- call to action
+- keywords
+- hashtags
+- visual style
+- camera direction
+- voice tone
+- music mood
+
+Storyboard must be displayed as 5 visual scene cards:
+- Scene 1 Hook
+- Scene 2 Setup
+- Scene 3 Conflict
+- Scene 4 Turning Point
+- Scene 5 Resolution
+
+Each scene card must include:
+- scene purpose
+- visual description
+- narration line or summary
+- emotional tone
+- production note
+
+9. Perspective Switching
+Add a persistent top-level control to switch between:
+- Writer View
+- Actor View
+- Reviewer View
+
+This must not restart the app.
+It must reinterpret the current project.
+
+Writer View shows:
+- story meaning
+- creative direction
+- collaboration choices
+- final production package
+
+Actor View shows:
+- character interpretation
+- performance style
+- emotional arc
+- why the actor is a strong match
+- how the scenes should be performed
+
+Reviewer View shows:
+- narrative clarity
+- coherence
+- emotional impact
+- audience engagement potential
+- reviewer evaluation summary
+- improvement notes if any
+
+If the user originally onboarded as actor or reviewer, still allow a demo mode where the app shows an example writer project so the user can see how their role fits into the collaboration.
+
+10. Role Placement UX Logic
+The frontend must help users get into the right role.
+
+Implement this logic:
+- if the user’s questionnaire is strongly weighted toward creation of ideas, recommend Writer
+- if strongly weighted toward performance and emotional embodiment, recommend Actor
+- if strongly weighted toward evaluation and feedback, recommend Reviewer
+- if strongly weighted toward professional validation, recommend Specialist
+
+If confidence is low, show:
+- "You may fit multiple roles"
+and present top 2 roles with:
+- primary recommendation
+- secondary recommendation
+
+Allow manual override, but always explain the recommended default.
+
+11. Demo Mode Toggle
+Add a demo mode switch in the UI:
+- Demo Mode ON uses local sample datasets and a sample writer project
+- Demo Mode OFF uses live user input only
+
+This helps the hackathon demo move quickly.
+
+12. Navigation and State
+Implement step navigation with a visible progress bar:
+
+Step 1 Role Discovery
+Step 2 Role Confirmation
+Step 3 Role Profile
+Step 4 Matching
+Step 5 Project Assembly
+Step 6 Production Package
+
+Persist state in frontend memory so users can move back without losing all data.
+
+13. Visual Design
+Frontend design should feel like a creative collaboration studio.
+
+Use:
+- clean card layout
+- role badges
+- section headers
+- score chips
+- timeline/progress bar
+- scene cards
+- sticky top navigation for perspective switching
+
+Do not make it look like a raw form app.
+Make it look like a lightweight product demo for judges.
+
+14. Empty States and Guidance
+For every major section, include helper text.
+Examples:
+- "Writers bring the narrative spark to a project."
+- "Actors help transform text into emotional presence."
+- "Reviewers raise quality before production begins."
+
+When no matches are available, show a graceful empty state and fallback demo data.
+
+15. Frontend Files
+Expand frontend implementation into these files if needed:
+
+frontend/
+index.html
+app.js
+styles.css
+state.js
+ui.js
+roleDiscovery.js
+profileForms.js
+matchingView.js
+projectView.js
+productionView.js
+
+If KIRO prefers fewer files, keep code organized by sections and comments.
+
+16. Backend Compatibility
+Ensure the frontend sends payloads compatible with:
+POST /profile
+POST /match
+POST /assembleProject
+POST /generateProductionPackage
+
+For role recommendation, create either:
+- a lightweight frontend-only scoring function
+or
+- a backend endpoint POST /recommendRole
+
+If adding POST /recommendRole makes the flow more robust, implement it.
+
+17. Hackathon Presentation Goal
+The UI must make judges immediately understand:
+- this platform is not just content generation
+- this platform discovers role fit
+- this platform matches people by contribution
+- this platform assembles collaboration
+- this platform turns collaboration into a YouTube-ready concept
+
+Prioritize clarity, credibility, and demo smoothness over unnecessary complexity.
+
+Build the frontend so the role placement experience feels intelligent, role-specific, and visually clear enough that a first-time viewer instantly understands where each type of user belongs in byDebut.
