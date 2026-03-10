@@ -1,0 +1,283 @@
+You are at a **very important moment in the KIRO workflow**, and the correct move now is **NOT to refine requirements anymore**.
+
+What KIRO has just done is **exactly correct**.
+
+It created:
+
+* `.config.kiro`
+* `requirements.md`
+
+This means the **Requirements phase of the spec-driven workflow is complete**.
+
+The next correct step in the **KIRO Spec Pipeline** is:
+
+**Requirements → Design → Tasks → Implementation**
+
+Right now KIRO is asking:
+
+> “Would you like to proceed to the design phase, or review the requirements first?”
+
+You should **proceed to Design**.
+
+Because:
+
+* the requirements are already well structured
+* refining them will not improve the architecture significantly
+* the real value now is defining the **system architecture and modules**
+
+---
+
+# What you should click
+
+Click:
+
+**Build a Feature → Design**
+
+or simply respond to KIRO:
+
+> Proceed to the design phase.
+
+---
+
+# Why the Design phase is critical
+
+The design phase will define the **architecture of the new truth-analysis engine**, including:
+
+### Core modules KIRO should create
+
+1️⃣ Claim Decomposition Engine
+
+```
+/backend/src/analysis/claimDecomposer.ts
+```
+
+Responsible for:
+
+* actors
+* actions
+* objects
+* place
+* time
+* causal relations
+
+---
+
+2️⃣ Query Generation Engine
+
+```
+/backend/src/retrieval/queryGenerator.ts
+```
+
+Generates multiple queries:
+
+* exact claim
+* entity-action
+* official confirmation
+* contradiction search
+* regional reporting
+* fact-check queries
+
+---
+
+3️⃣ Evidence Retrieval Orchestrator
+
+```
+/backend/src/retrieval/evidenceRetriever.ts
+```
+
+Handles:
+
+* search providers
+* domain diversity
+* query batching
+* iterative retrieval
+
+---
+
+4️⃣ Evidence Quality Filter
+
+```
+/backend/src/evidence/evidenceFilter.ts
+```
+
+Rejects:
+
+* homepages
+* section pages
+* tag pages
+* broken links
+* irrelevant pages
+
+---
+
+5️⃣ Evidence Scoring Engine
+
+```
+/backend/src/evidence/evidenceScorer.ts
+```
+
+Dimensions:
+
+* relevance
+* specificity
+* freshness
+* authority
+* corroboration
+* contradiction value
+
+---
+
+6️⃣ Contradiction Analyzer
+
+```
+/backend/src/analysis/contradictionEngine.ts
+```
+
+Builds:
+
+```
+evidence_for
+evidence_against
+evidence_unclear
+```
+
+---
+
+7️⃣ Iterative Retrieval Controller
+
+```
+/backend/src/retrieval/retrievalController.ts
+```
+
+Controls:
+
+```
+pass1: broad search
+pass2: refinement
+pass3: contradiction search
+```
+
+---
+
+8️⃣ Verdict Synthesizer
+
+```
+/backend/src/analysis/verdictSynthesizer.ts
+```
+
+Produces:
+
+```
+verdict
+confidence
+supported_subclaims
+contradicted_subclaims
+uncertain_points
+```
+
+---
+
+9️⃣ Evidence Validator (for broken links)
+
+```
+/backend/src/evidence/urlValidator.ts
+```
+
+Rejects:
+
+```
+404
+homepage
+category page
+unavailable page
+```
+
+This specifically solves the issue you saw with:
+
+* Reuters "latest news"
+* AP page unavailable
+* generic landing pages
+
+---
+
+# What the final architecture should look like
+
+The pipeline KIRO should design:
+
+```
+Claim Input
+     ↓
+Claim Decomposition
+     ↓
+Multi-Query Generation
+     ↓
+Evidence Retrieval (multi-pass)
+     ↓
+Evidence Quality Filtering
+     ↓
+Evidence Scoring
+     ↓
+Contradiction Search
+     ↓
+Evidence Diversity Enforcement
+     ↓
+Verdict Synthesis
+     ↓
+UI Evidence Graph + Results
+```
+
+---
+
+# Very important instruction you should add to KIRO
+
+When you proceed to Design, add this instruction:
+
+```
+The design must ensure that the retrieval system does not rely on a fixed set of domains and does not stop after the first retrieval pass.
+
+The architecture must support iterative retrieval, evidence filtering, contradiction search, and primary-source prioritization.
+
+Broken pages, category pages, and generic landing pages must never appear as final evidence.
+```
+
+---
+
+# The real impact of what you just did
+
+What you asked KIRO to build is **no longer just a fact-check UI**.
+
+You are now designing a **Truth Analysis Engine**.
+
+Comparable conceptually to:
+
+* Google Fact Check Explorer
+* Perplexity verification mode
+* research agents
+* investigative journalism tools
+
+But with:
+
+* **SIFT methodology**
+* **evidence graph**
+* **claim decomposition**
+
+That is actually **very powerful for a hackathon jury**.
+
+---
+
+# One more thing I strongly recommend
+
+After the **Design phase**, ask KIRO to enforce:
+
+```
+Minimum 5 high-quality evidence sources
+Minimum 2 contradictory-search passes
+Maximum 3 retrieval loops
+Strict evidence filtering
+```
+
+This will dramatically improve output quality.
+
+---
+
+If you want, I can also give you the **next KIRO instruction block for the Design phase** that will make FakeNewsOff behave like a **true investigative AI system rather than a simple search wrapper.**
